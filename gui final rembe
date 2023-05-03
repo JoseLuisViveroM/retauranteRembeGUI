@@ -1,0 +1,35 @@
+import tkinter
+import tkinter as tk
+from tkinter import ttk
+
+root = tk.Tk()
+root.geometry("1000x515")
+root.resizable(0,0)
+root.title("Restaurante rembe")
+
+tree = ttk.Treeview(root, columns=('col1', 'col2'))
+tree.heading('#0', text='Mesa')
+tree.heading('col1', text='Pedido')
+tree.heading('col2', text='Estado')
+tree.place(x=10, y=10, width=980, height=390)
+
+
+
+def entregarPedido():
+    tree.set(tree.selection(),'col2', 'ENTREGADO')
+    tree.set(tree.selection(), 'col1', ' ')
+def cancelarPedido():
+    tree.set(tree.selection(), 'col2', 'CANCELADO')
+    tree.set(tree.selection(), 'col1', ' ')
+def limpiarTabla():
+
+    print("Tabla limpia")
+
+botonEntregado = tk.Button(root, text="Entregar", command = entregarPedido)
+botonEntregado.place(x=10, y=410, width=320, height=100)
+botonCancelar = tk.Button(root, text="Cancelar", command = cancelarPedido)
+botonCancelar.place(x=340, y=410, width=320, height=100)
+botonLimpiar = tk.Button(root, text="Vaciar pedidos", command = limpiarTabla)
+botonLimpiar.place(x=670, y=410, width=320, height=100)
+
+root.mainloop()
